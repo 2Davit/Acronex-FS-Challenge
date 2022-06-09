@@ -6,6 +6,7 @@ import {
   MachineID,
   MachineName,
   MachineStatus,
+  StyledLink,
 } from "./styles";
 
 const MachineList = () => {
@@ -28,11 +29,13 @@ const MachineList = () => {
     <Container>
       {machines.slice(0, 5).map((machine, index) => {
         return (
-          <MachineItemContainer isFirst={!index} key={machine.id}>
-            <MachineID>({machine.id})</MachineID>
-            <MachineName>{machine.description}</MachineName>
-            <MachineStatus working={machine.working}></MachineStatus>
-          </MachineItemContainer>
+          <StyledLink to={`/machines/${machine.id}`}>
+            <MachineItemContainer isFirst={!index} key={machine.id}>
+              <MachineID>({machine.id})</MachineID>
+              <MachineName>{machine.description}</MachineName>
+              <MachineStatus working={machine.working}></MachineStatus>
+            </MachineItemContainer>
+          </StyledLink>
         );
       })}
     </Container>

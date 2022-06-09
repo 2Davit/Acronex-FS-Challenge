@@ -9,8 +9,8 @@ function App() {
   return (
     <Routes>
       <Route path="/*" element={<NavBar />} />
-      <Route path="/machines" element={<MachineList />} />
-      <Route path="/machines/:id" element={<MachineInfo />} />
+      <Route path="machines" element={<MachineList />} />
+      <Route path="machines/:id" element={<MachineInfo />} />
     </Routes>
   );
 }

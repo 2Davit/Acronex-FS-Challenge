@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const Container = styled.div`
   display: flex;
@@ -10,17 +11,22 @@ export const Container = styled.div`
 `;
 
 export const MachineItemContainer = styled.div`
+  margin: auto;
   position: relative;
   display: flex;
   align-items: center;
   height: 80px;
-  width: 50%;
+  width: 100%;
   background-color: var(--secondary-bg-color);
   ${(props) => (props.isFirst ? "border-top-left-radius: 5px;" : "")}
   border-top-right-radius: 5px;
   border-top: 2px solid var(--primary-bg-color);
   border-right: 2px solid var(--primary-bg-color);
   ${(props) => (props.isFirst ? "" : "transform: translateY(-5px);")}
+  &:hover {
+    background-color: lightgray;
+    transition: 0.25s;
+  }
 `;
 
 export const MachineID = styled.span`
@@ -47,4 +53,10 @@ export const MachineStatus = styled.div`
     props.working
       ? "var(--status-color-moving)"
       : "var(--status-color-stopped)"};
+`;
+
+export const StyledLink = styled(Link)`
+  height: 80px;
+  width: 50%;
+  text-decoration: none;
 `;
