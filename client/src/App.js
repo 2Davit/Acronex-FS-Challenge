@@ -1,12 +1,18 @@
-import { BrowserRouter, Route } from "react-router-dom";
-import { NavBar, MachineList, MachineInfo } from "./components";
+import React from "react";
+import { Route, Routes } from "react-router-dom";
+
+import NavBar from "./components/NavBar/index.jsx";
+import MachineList from "./components/MachineList";
+import MachineInfo from "./components/MachineInfo";
 
 function App() {
-  <BrowserRouter>
-    <Route path="/" component={NavBar} />
-    <Route path="/machines?search=" component={MachineList} />
-    <Route path="/machines/:id" component={MachineInfo} />
-  </BrowserRouter>;
+  return (
+    <Routes>
+      <Route path="/" element={<NavBar />} />
+      <Route path="/machines?search=" element={<MachineList />} />
+      <Route path="/machines/:id" element={<MachineInfo />} />
+    </Routes>
+  );
 }
 
 export default App;
