@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import {
   Container,
   MachineItemContainer,
@@ -8,23 +9,32 @@ import {
 } from "./styles";
 
 const MachineList = () => {
+  const [machines, setMachines] = useState([]);
+
+  const getMachines = async () => {
+    const { data: machineList } = await axios.get(
+      "https://wrk.acronex.com/api/challenge/machines"
+    );
+    setMachines(machineList);
+  };
+
+  useEffect(() => {
+    getMachines();
+  }, []);
+
+  console.log(machines);
+
   return (
     <Container>
-      <MachineItemContainer isFirst={TextTrackCueList}>
-        <MachineID>(1500)</MachineID>
-        <MachineName>Test Machine</MachineName>
-        <MachineStatus working={true}></MachineStatus>
-      </MachineItemContainer>
-      <MachineItemContainer>
-        <MachineID>(1500)</MachineID>
-        <MachineName>Test Machine</MachineName>
-        <MachineStatus working={true}></MachineStatus>
-      </MachineItemContainer>
-      <MachineItemContainer>
-        <MachineID>(1500)</MachineID>
-        <MachineName>Test Machine</MachineName>
-        <MachineStatus working={true}></MachineStatus>
-      </MachineItemContainer>
+      {machines.slice(0, 5).map((machine, index) => {
+        return (
+          <MachineItemContainer isFirst={!index} key={machine.id}>
+            <MachineID>({machine.id})</MachineID>
+            <MachineName>{machine.description}</MachineName>
+            <MachineStatus working={machine.working}></MachineStatus>
+          </MachineItemContainer>
+        );
+      })}
     </Container>
   );
 };
