@@ -8,8 +8,8 @@ import MachineInfo from "./components/MachineInfo";
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<NavBar />} />
-      <Route path="/machines?search=" element={<MachineList />} />
+      <Route path="/*" element={<NavBar />} />
+      <Route path="/machines" element={<MachineList />} />
       <Route path="/machines/:id" element={<MachineInfo />} />
     </Routes>
   );

@@ -4,31 +4,35 @@ import logoIcon from "../../assets/logo35x35.png";
 import logoUnimap from "../../assets/unimap_blanco.svg";
 
 export const Container = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100vw;
   height: 50px;
+  width: 100vw;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: var(--nav-bg-color);
 `;
 
 export const LogoContainer = styled.div`
+  left: 35px;
+  height: 50px;
+  width: 150px;
+  position: absolute;
   display: flex;
   align-items: center;
-  margin-left: 35px;
-  height: 50px;
-  width: 170px;
 `;
 
 export const LogoIcon = styled.div`
   height: 35px;
   width: 35px;
   background-image: url(${logoIcon});
+  background-repeat: no-repeat;
+  background-size: 100%;
   border: none;
 `;
 
 export const LogoUnimap = styled.div`
-  height: 50px;
+  height: 40px;
   width: 135px;
   background-image: url(${logoUnimap});
   background-repeat: no-repeat;
@@ -36,14 +40,14 @@ export const LogoUnimap = styled.div`
 `;
 
 export const SearchInputContainer = styled.form`
+  height: 30px;
+  width: 50%;
+  padding: 2px 6px;
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 30px;
-  width: 55%;
-  padding: 2px 6px;
-  background-color: var(--tertiary-bg-color);
+  background-color: var(--secondary-bg-color);
   border-radius: 5px;
 `;
 
@@ -57,6 +61,8 @@ export const SearchInput = styled.input`
 `;
 
 export const SearchIcon = styled.button`
+  height: 100%;
+  width: 4%;
   position: absolute;
   right: 0;
   background: transparent url(${searchIcon});
@@ -64,18 +70,20 @@ export const SearchIcon = styled.button`
   background-repeat: no-repeat;
   background-position: center;
   border: none;
-  height: 100%;
-  width: 4%;
   cursor: pointer;
 `;
 
-export const UserIcon = styled.div`
+export const UserIcon = styled.button`
+  right: 35px;
+  height: 35px;
+  width: 35px;
+  position: absolute;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--tertiary-bg-color);
-  margin-right: 35px;
-  height: 35px;
-  width: 35px;
+  background-color: var(--secondary-bg-color);
   border-radius: 999px;
+  border: none;
+  color: var(--primary-text-color);
+  cursor: pointer;
 `;
