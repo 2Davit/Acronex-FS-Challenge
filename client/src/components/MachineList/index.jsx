@@ -23,14 +23,12 @@ const MachineList = () => {
     getMachines();
   }, []);
 
-  console.log(machines);
-
   return (
     <Container>
       {machines.slice(0, 5).map((machine, index) => {
         return (
-          <StyledLink to={`/machines/${machine.id}`}>
-            <MachineItemContainer isFirst={!index} key={machine.id}>
+          <StyledLink key={machine.id} to={`/machines/${machine.id}`}>
+            <MachineItemContainer isFirst={!index}>
               <MachineID>({machine.id})</MachineID>
               <MachineName>{machine.description}</MachineName>
               <MachineStatus working={machine.working}></MachineStatus>

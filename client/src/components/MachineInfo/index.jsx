@@ -11,10 +11,10 @@ import {
   InfoContainer,
   ResumeContainer,
   DataContainer,
-  DataTitle,
   DataInfo,
   MachineStatus,
   DetailsContainer,
+  DetailsCard,
   DetailsTitle,
   DetailsInfoContainer,
   DetailsInfo,
@@ -35,54 +35,59 @@ const MachineInfo = () => {
     getMachineInfo();
   }, []);
 
-  console.log(machine);
+  const dataKeys = [];
+  for (let key in machine?.data) {
+    dataKeys.push(key);
+  }
 
   return (
     <Container>
       <Header>
-        <Name>Pulverizadora - Demo Salta 2</Name>
-        <ID>383</ID>
+        <Name>{machine?.description}</Name>
+        <ID>{machine?.id}</ID>
       </Header>
       <InfoContainer>
         <ResumeContainer>
           <DataContainer>
-            <DataTitle>Empresa</DataTitle>
-            <DataInfo>Prueba S.R.L.</DataInfo>
+            <DataInfo $title={true}>Empresa</DataInfo>
+            <DataInfo>{machine?.company ? machine.company : "-"}</DataInfo>
           </DataContainer>
           <DataContainer>
-            <DataTitle>Clase</DataTitle>
-            <DataInfo>Pulverizador Autopropulsada</DataInfo>
+            <DataInfo $title={true}>Clase</DataInfo>
+            <DataInfo>{machine?.class ? machine.class : "-"}</DataInfo>
           </DataContainer>
           <DataContainer>
-            <DataTitle>Estado</DataTitle>
+            <DataInfo $title={true}>Estado</DataInfo>
             <DataInfo>
-              <MachineStatus working={false} />
-              En movimiento
+              <MachineStatus working={machine?.moving || false} />
+              {machine?.moving ? `En movimiento` : `Sin movimiento`}
             </DataInfo>
           </DataContainer>
           <DataContainer>
-            <DataTitle>Última actualización</DataTitle>
-            <DataInfo>23/11/2020 19:16:03</DataInfo>
+            <DataInfo $title={true}>Última actualización</DataInfo>
+            <DataInfo>
+              {machine?.last_update ? machine.last_update : "-"}
+            </DataInfo>
           </DataContainer>
         </ResumeContainer>
         <DetailsContainer>
-          <DetailsTitle>General</DetailsTitle>
-          <DetailsInfoContainer>
-            <DetailsInfo value={false}>Cosechando</DetailsInfo>
-            <DetailsInfo value={true}>si</DetailsInfo>
-          </DetailsInfoContainer>
-          <DetailsInfoContainer>
-            <DetailsInfo value={false}>Batería interna</DetailsInfo>
-            <DetailsInfo value={true}>4 V</DetailsInfo>
-          </DetailsInfoContainer>
-          <DetailsInfoContainer>
-            <DetailsInfo value={false}>Batería vehículo</DetailsInfo>
-            <DetailsInfo value={true}>13 V</DetailsInfo>
-          </DetailsInfoContainer>
-          <DetailsInfoContainer>
-            <DetailsInfo value={false}>Uso Combustible</DetailsInfo>
-            <DetailsInfo value={true}>52 l/hora</DetailsInfo>
-          </DetailsInfoContainer>
+          {dataKeys.map((key) => {
+            return (
+              <DetailsCard key={key}>
+                <DetailsTitle>{key}</DetailsTitle>
+                {Object.entries(machine?.data[key]).map(([clave, valor]) => {
+                  return (
+                    <React.Fragment key={clave}>
+                      <DetailsInfoContainer>
+                        <DetailsInfo $value={true}>{clave}</DetailsInfo>
+                        <DetailsInfo>{valor}</DetailsInfo>
+                      </DetailsInfoContainer>
+                    </React.Fragment>
+                  );
+                })}
+              </DetailsCard>
+            );
+          })}
         </DetailsContainer>
       </InfoContainer>
     </Container>

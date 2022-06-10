@@ -25,6 +25,7 @@ export const Header = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-bottom: 2px solid var(--primary-bg-color);
 `;
 
 export const Name = styled.span`
@@ -56,17 +57,11 @@ export const DataContainer = styled.div`
   flex-direction: column;
 `;
 
-export const DataTitle = styled.span`
-  font-size: 18px;
-  font-weight: bold;
-  color: var(--primary-text-color);
-`;
-
 export const DataInfo = styled.span`
-  padding-top: 1em;
-  display: flex;
   font-size: 18px;
   color: var(--primary-text-color);
+  ${(props) =>
+    props.$title ? "font-weight: bold;" : "padding-top: 1em;display: flex;"}
 `;
 
 export const MachineStatus = styled.div`
@@ -87,6 +82,13 @@ export const DetailsContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+`;
+
+export const DetailsCard = styled.div`
+  width: 100%;
+  margin: 1.5em 0em;
+  display: flex;
+  flex-direction: column;
   border: 2px solid var(--primary-bg-color);
 `;
 
@@ -111,5 +113,7 @@ export const DetailsInfo = styled.span`
   font-size: 18px;
   color: var(--primary-text-color);
   ${(props) =>
-    props.value ? "text-align: left;padding-left: 5em" : "text-align: right;"};
+    props.$value
+      ? "text-align: right; padding-right: 5em;"
+      : "text-align: left;"};
 `;
