@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import axios from "axios";
+
 import {
   MachineItemContainer,
   MachineID,
@@ -10,17 +12,29 @@ import {
 
 const MachineList = () => {
   const [machines, setMachines] = useState([]);
+  const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
 
-  const getMachines = async () => {
-    const { data: machineList } = await axios.get(
-      "https://wrk.acronex.com/api/challenge/machines"
-    );
-    setMachines(machineList);
-  };
+  const search = searchParams.get("search");
+
+  const getMachines = useCallback(async () => {
+    if (search) {
+      const { data: machineList } = await axios.get(
+        `https://wrk.acronex.com/api/challenge/machines?q=${search}`
+      );
+      if (!Array.isArray(machineList)) navigate(`/machines/${machineList.id}`);
+      setMachines(machineList);
+    } else {
+      const { data: machineList } = await axios.get(
+        "https://wrk.acronex.com/api/challenge/machines"
+      );
+      setMachines(machineList);
+    }
+  }, [navigate, search]);
 
   useEffect(() => {
     getMachines();
-  }, []);
+  }, [getMachines, searchParams]);
 
   return (
     <>

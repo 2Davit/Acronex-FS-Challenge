@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Container,
   LogoContainer,
@@ -6,20 +7,41 @@ import {
   LogoUnimap,
   SearchInputContainer,
   SearchInput,
-  SearchIcon,
+  SearchBtn,
   UserIcon,
 } from "./styles";
 
 const NavBar = () => {
+  const [search, setSearch] = useState("");
+  const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    setSearch(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    navigate(`/machines?search=${search}`);
+  };
+
   return (
     <Container>
-      <LogoContainer>
+      <LogoContainer
+        onClick={() => {
+          navigate("/");
+        }}
+      >
         <LogoIcon />
         <LogoUnimap />
       </LogoContainer>
-      <SearchInputContainer>
-        <SearchInput placeholder="Buscar máquina" />
-        <SearchIcon></SearchIcon>
+      <SearchInputContainer onSubmit={handleSubmit}>
+        <SearchInput
+          placeholder="Buscar máquina"
+          name="search"
+          value={search}
+          onChange={handleChange}
+        />
+        <SearchBtn type="submit" name="search_btn"></SearchBtn>
       </SearchInputContainer>
       <UserIcon>NN</UserIcon>
     </Container>

@@ -21,6 +21,7 @@ export const LogoContainer = styled.div`
   position: absolute;
   display: flex;
   align-items: center;
+  cursor: pointer;
 `;
 
 export const LogoIcon = styled.div`
@@ -61,7 +62,7 @@ export const SearchInput = styled.input`
   }
 `;
 
-export const SearchIcon = styled.button`
+export const SearchBtn = styled.button`
   height: 100%;
   width: 4%;
   position: absolute;

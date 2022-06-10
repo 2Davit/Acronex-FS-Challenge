@@ -1,8 +1,9 @@
 import React from "react";
-import { Container } from "./styles";
+
+import MachineList from "../MachineList/index";
 
 const Home = () => {
-  return <Container></Container>;
+  return <MachineList />;
 };
 
 export default Home;

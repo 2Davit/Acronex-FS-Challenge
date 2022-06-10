@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
@@ -23,16 +23,16 @@ const MachineInfo = () => {
   const params = useParams();
   const [machine, setMachine] = useState();
 
-  const getMachineInfo = async () => {
+  const getMachineInfo = useCallback(async () => {
     const { data: machineInfo } = await axios.get(
       `https://wrk.acronex.com/api/challenge/machines/${params.id}`
     );
     setMachine(machineInfo);
-  };
+  }, [params.id]);
 
   useEffect(() => {
     getMachineInfo();
-  }, []);
+  }, [getMachineInfo]);
 
   const dataKeys = [];
   for (let key in machine?.data) {
@@ -74,12 +74,12 @@ const MachineInfo = () => {
             return (
               <DetailsCard key={key}>
                 <DetailsTitle>{key}</DetailsTitle>
-                {Object.entries(machine?.data[key]).map(([clave, valor]) => {
+                {Object.entries(machine?.data[key]).map(([entry, value]) => {
                   return (
-                    <React.Fragment key={clave}>
+                    <React.Fragment key={entry}>
                       <DetailsInfoContainer>
-                        <DetailsInfo $value={true}>{clave}</DetailsInfo>
-                        <DetailsInfo>{valor}</DetailsInfo>
+                        <DetailsInfo $value={true}>{entry}</DetailsInfo>
+                        <DetailsInfo>{value}</DetailsInfo>
                       </DetailsInfoContainer>
                     </React.Fragment>
                   );
