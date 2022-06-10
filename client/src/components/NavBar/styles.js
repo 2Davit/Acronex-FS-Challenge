@@ -6,7 +6,8 @@ import logoUnimap from "../../assets/unimap_blanco.svg";
 export const Container = styled.div`
   height: 50px;
   width: 100vw;
-  position: fixed;
+  position: absolute;
+  top: 0;
   display: flex;
   justify-content: center;
   align-items: center;

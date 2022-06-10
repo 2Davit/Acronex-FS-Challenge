@@ -7,11 +7,14 @@ import MachineInfo from "./components/MachineInfo";
 
 function App() {
   return (
-    <Routes>
-      <Route path="/*" element={<NavBar />} />
-      <Route path="machines" element={<MachineList />} />
-      <Route path="machines/:id" element={<MachineInfo />} />
-    </Routes>
+    <>
+      <NavBar />
+      <Routes>
+        {/* <Route path="/*" element={} /> */}
+        <Route path="machines" element={<MachineList />} />
+        <Route path="machines/:id" element={<MachineInfo />} />
+      </Routes>
+    </>
   );
 }
 

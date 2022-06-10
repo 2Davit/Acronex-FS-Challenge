@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import {
-  Container,
   MachineItemContainer,
   MachineID,
   MachineName,
@@ -24,19 +23,19 @@ const MachineList = () => {
   }, []);
 
   return (
-    <Container>
+    <>
       {machines.slice(0, 5).map((machine, index) => {
         return (
-          <StyledLink key={machine.id} to={`/machines/${machine.id}`}>
-            <MachineItemContainer isFirst={!index}>
+          <MachineItemContainer key={machine.id} isFirst={!index}>
+            <StyledLink to={`/machines/${machine.id}`}>
               <MachineID>({machine.id})</MachineID>
               <MachineName>{machine.description}</MachineName>
               <MachineStatus working={machine.working}></MachineStatus>
-            </MachineItemContainer>
-          </StyledLink>
+            </StyledLink>
+          </MachineItemContainer>
         );
       })}
-    </Container>
+    </>
   );
 };
 

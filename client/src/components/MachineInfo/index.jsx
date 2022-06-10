@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 
 import {
-  ViewContainer,
   Container,
   Header,
   Name,
@@ -59,7 +58,7 @@ const MachineInfo = () => {
           <DataContainer>
             <DataInfo $title={true}>Estado</DataInfo>
             <DataInfo>
-              <MachineStatus working={machine?.moving || false} />
+              <MachineStatus moving={machine?.moving || false} />
               {machine?.moving ? `En movimiento` : `Sin movimiento`}
             </DataInfo>
           </DataContainer>

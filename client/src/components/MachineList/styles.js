@@ -1,22 +1,14 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-export const Container = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  width: 100vw;
-  height: 100vh;
-`;
-
 export const MachineItemContainer = styled.div`
+  height: 80px;
+  width: 50%;
   margin: auto;
-  position: relative;
+  top: 5em;
   display: flex;
   align-items: center;
-  height: 80px;
-  width: 100%;
+  position: relative;
   background-color: var(--secondary-bg-color);
   ${(props) => (props.isFirst ? "border-top-left-radius: 5px;" : "")}
   border-top-right-radius: 5px;
@@ -56,7 +48,9 @@ export const MachineStatus = styled.div`
 `;
 
 export const StyledLink = styled(Link)`
+  display: flex;
+  align-items: center;
   height: 80px;
-  width: 50%;
+  width: 100%;
   text-decoration: none;
 `;

@@ -1,19 +1,12 @@
 import styled from "styled-components";
 
-/* export const ViewContainer = styled.div`
-  height: 100vh;
-  width: 100vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: var(--primary-bg-color);
-`; */
-
 export const Container = styled.div`
   width: 55%;
   display: flex;
   flex-direction: column;
   margin: auto;
+  margin-top: 5em;
+  margin-bottom: 2.5em;
   background-color: var(--secondary-bg-color);
   border-radius: 5px;
 `;
@@ -70,7 +63,7 @@ export const MachineStatus = styled.div`
   margin-right: 0.5em;
   border-radius: 9999px;
   background-color: ${(props) =>
-    props.working
+    props.moving // Estoy usando la propiedad "moving", en lugar de la de "working" que se usa en MachineList.
       ? "var(--status-color-moving)"
       : "var(--status-color-stopped)"};
 `;
@@ -111,9 +104,10 @@ export const DetailsInfoContainer = styled.span`
 export const DetailsInfo = styled.span`
   width: 50%;
   font-size: 18px;
+  overflow-wrap: break-word;
   color: var(--primary-text-color);
   ${(props) =>
     props.$value
-      ? "text-align: right; padding-right: 5em;"
-      : "text-align: left;"};
+      ? "text-align: right; "
+      : "text-align: left; padding-left: 5em;"};
 `;
