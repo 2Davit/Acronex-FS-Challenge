@@ -8,10 +8,14 @@ import {
   MachineName,
   MachineStatus,
   StyledLink,
+  PaginateContainer,
+  ChangePageBtn,
+  Container,
 } from "./styles";
 
 const MachineList = () => {
   const [machines, setMachines] = useState([]);
+  const [page, setPage] = useState(1);
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
 
@@ -37,8 +41,8 @@ const MachineList = () => {
   }, [getMachines, searchParams]);
 
   return (
-    <>
-      {machines.slice(0, 5).map((machine, index) => {
+    <Container>
+      {machines.slice(page * 5 - 5, page * 5).map((machine, index) => {
         return (
           <MachineItemContainer key={machine.id} isFirst={!index}>
             <StyledLink to={`/machines/${machine.id}`}>
@@ -49,7 +53,20 @@ const MachineList = () => {
           </MachineItemContainer>
         );
       })}
-    </>
+      <PaginateContainer>
+        <ChangePageBtn disabled={page < 2} onClick={() => setPage(page - 1)}>
+          Página anterior
+        </ChangePageBtn>
+        <ChangePageBtn
+          disabled={
+            machines.slice((page + 1) * 5 - 5, (page + 1) * 5).length < 1
+          }
+          onClick={() => setPage(page + 1)}
+        >
+          Siguiente página
+        </ChangePageBtn>
+      </PaginateContainer>
+    </Container>
   );
 };
 
